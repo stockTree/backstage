@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const { Template } = require('webpack');
@@ -15,7 +14,21 @@ module.exports = {
         new ExtractTextPlugin("styles.css")
     ],
     devServer: {
-        port: '8868',
+        // port: '8868',
+        // historyApiFallback: {index: 'index.html'},
+        // hot: true,
+        // publicPath: publicPath,
+        // contentBase: path.resolve(__dirname, buildPath),
+        // publicPath: publicPath, //添加
+        inline: true, //添加
+        hot: true,
+        proxy: {
+            '/manage/user/**': {
+                target: 'http://admintest.happymmall.com',
+                secure: false, // 接受 运行在 https 上的服务
+                changeOrigin: true
+            }
+        }
     },
     module: {
         rules: [
@@ -25,7 +38,7 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                presets: ['env', 'react']
+                presets: ['env', 'react', "stage-0"]
                     }
                 }
             },

@@ -1,0 +1,20 @@
+
+.log-card{
+    height: 280px;
+    position: absolute;
+    top: 50%;
+    margin-top: -140px;
+    padding: 26px 36px;
+    .log-title{
+        text-align: center;
+        display: block;
+        font-size: 24px;
+        margin-bottom:26px;
+    }
+    .log-input{
+        margin-bottom:16px;
+    }
+    .log-pwd{
+        margin-bottom:24px;
+    }
+}

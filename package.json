@@ -4,6 +4,7 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "sass-loader": "^9.0.1",
@@ -14,15 +15,18 @@
   },
   "scripts": {
     "start": "webpack --mode development",
-    "dev": "webpack-dev-server --inline"
+    "dev": "webpack-dev-server --hot"
   },
   "dependencies": {
+    "antd": "^4.4.1",
+    "axios": "^0.19.2",
     "css-loader": "^3.6.0",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
