@@ -6,6 +6,7 @@ import Login from './page/login/index.jsx'
 import Home from './page/home/index.jsx'
 import Layout from './component/layout/index.jsx'
 import './public.scss'
+import './relize.scss'
 
 import {
     HashRouter as Router,

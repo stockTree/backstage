@@ -1,0 +1,34 @@
+
+ol{
+    display: flex;
+    justify-content: space-between;
+    :nth-child(1){
+        background:#66a1d2;
+    }
+    :nth-child(2){
+        background:#514ed9;
+    }
+    :nth-child(3){
+        background:#ffae40;
+    }
+    li{
+        padding: 14px 40px;
+        width: 28%;
+        &hover{
+            color: #555;
+            width:31%
+        }
+        span{
+            text-align: center;
+            display: block;
+            color: #fff;
+            padding: 8px 20px;
+        }
+        .num {
+            font-size: 28px;
+        }
+        .numText {
+            font-size: 16px;
+        }
+    }
+}

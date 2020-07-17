@@ -23,7 +23,12 @@ module.exports = {
         inline: true, //添加
         hot: true,
         proxy: {
-            '/manage/user/**': {
+            '/manage/**': {
+                target: 'http://admintest.happymmall.com',
+                secure: false, // 接受 运行在 https 上的服务
+                changeOrigin: true
+            },
+            '/user/login.do': {
                 target: 'http://admintest.happymmall.com',
                 secure: false, // 接受 运行在 https 上的服务
                 changeOrigin: true

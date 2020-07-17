@@ -2,45 +2,70 @@ import React, {Component} from 'react'
 import { Row, Col, Form, Input, Button } from 'antd';
 import './index.scss'
 import apis from '../../apis/index.js'
+import Utils from '../../assets/utils/utils'
 const DemoBox = props => <p className={`height-${props.value}`}>{props.children}</p>
 
 
 class Login extends Component{
-    // constructor (props) {
-    //     super (props)
-        state = {
-            valAccount: '22',
-            valPwd: '33'
-        }
-    // }
+    constructor (props) {
+        super (props)
+    }
+    state = {
+        valAccount: 'admin',
+        valPwd: 'admin'
+    }
     getValue = (e) => {
-        console.log(e,11,2)
-        console.log(e.target.value,24)
-        console.log(e.target.name,23)
         let inputName = e.target.name
         let inputValue = e.target.value
-        console.log(inputName,inputValue)
         this.setState({[inputName]:inputValue})
     }
-    handleLogin = () => {
-        console.log(11,3)
-        let {valAccount, valPwd} = this.state
-        let params = {
-            username: valAccount,
-            password: valPwd
+    // 账号密码校验
+    validateParams = () => {
+        let validate = {
+            result: true,
+            resultMsg: ''
         }
-        apis.login(params).then((res) => {
-            console.log(11)
-            if (res.code === '0') {
-                // this.payBtnVisible = false
-                // window.open(res.data.qrCodeUrl)
-            } else {
-                console.log(11)
-                // this.$message.error(res.message)
+        let {valAccount, valPwd} = this.state
+        if (valAccount) {
+            validate.result = true
+        } else {
+            validate.resultresultMsg = '账号不存在'
+            validate.result = false
+        }
+        if (valPwd) {
+            validate.result = true
+        } else {
+            validate.resultMsg = '密码不存在'
+            validate.result = false
+        }
+        return validate
+    }
+    // 登录
+    handleLogin = () => {
+        let {valAccount, valPwd} = this.state
+        if (this.validateParams().result) {
+            let params = {
+                username: valAccount,
+                password: valPwd
             }
-        }).catch((error) => {
-            // this.$message.error(error.message)
-        })
+            apis.login(params).then((res) => {
+                if (res.status === 0) {
+                    let setVal = new Utils()
+                    setVal.setStorage('userData', res.data)
+                    window.location.href = '/'
+                } else {
+                    console.log(11)
+                }
+            }).catch((error) => {
+            })
+        } else {
+        }
+    }
+    componentDidMount () {
+        document.addEventListener('keydown', this.onKeyDownEnter)
+    }
+    onKeyDownEnter = (e) => {
+        this.handleLogin()
     }
     
     render () {
@@ -51,33 +76,24 @@ class Login extends Component{
                     <Col span={8} offset={8} className="log-card g-blue-bg">
                         <DemoBox className="site-card-border-less-wrapper">
                             <span className="log-title">欢迎，进入管理后台</span>
-                            {/* <Card title="登录" bordered={false} className="g-padding g-blue-bg" style={{ width: 300}}> */}
-                            {/* <Form name="" onChange= {this.getValue}>
-                                <Form.Item name="valAccount" >
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item name="valPwd" >
-                                    <Input />
-                                </Form.Item>
-                            </Form> */}
-                                    <Input
-                                        className="log-input"
-                                        type="text"
-                                        placeholder="请输入账号"
-                                        onChange={this.getValue}
-                                        name="valAccount"
-                                        value={valAccount}
-                                    />
-                                    <Input
-                                        className="log-input"
-                                        type="text"
-                                        placeholder="请输入密码"
-                                        onChange={this.getValue}
-                                        name="valPwd"
-                                        value={valPwd}
-                                    />
-                                    <Button type="primary" size="large" block onClick={this.handleLogin}>登录</Button>
-                            {/* </Card> */}
+                            <Input
+                                className="log-input"
+                                type="text"
+                                placeholder="请输入账号"
+                                onChange={this.getValue}
+                                name="valAccount"
+                                value={valAccount}
+                                
+                            />
+                            <Input
+                                className="log-input"
+                                type="text"
+                                placeholder="请输入密码"
+                                onChange={this.getValue}
+                                name="valPwd"
+                                value={valPwd}
+                            />
+                            <Button type="primary" size="large" block onClick={this.handleLogin} onKeyDown={this.onKeyDownEnter}>登录</Button>
                         </DemoBox>
                     </Col>
                 </Row>
