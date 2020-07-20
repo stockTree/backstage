@@ -1,5 +1,7 @@
 import commonApi from './interFace/common'
+import userApi from './interFace/user'
 const apis = {
-    ...commonApi
+    ...commonApi,
+    ...userApi
 }
 export default apis

@@ -4,7 +4,9 @@ import 'antd/dist/antd.css'
 import './app.scss'
 import Login from './page/login/index.jsx'
 import Home from './page/home/index.jsx'
+import UserManagement from './page/userManagement/index.jsx'
 import Layout from './component/layout/index.jsx'
+import Error from './page/error/index.jsx'
 import './public.scss'
 import './relize.scss'
 
@@ -27,7 +29,8 @@ class App extends React.Component {
                                     <Route path="/merchandiseManagement" component={Home}></Route>
                                     <Route path="/categoryManagement" component={Home}></Route>
                                     <Route path="/orderManagement" component={Home}></Route>
-                                    <Route path="/userManagemen" component={Home}></Route>
+                                    <Route path="/userManagement" component={UserManagement}></Route>
+                                    <Route component={Error}></Route>
                                 </Switch>
                             </Layout>
                         )}>

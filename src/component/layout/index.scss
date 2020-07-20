@@ -1,0 +1,13 @@
+.layout{
+    
+    .content {
+        margin-left: 25%;
+        padding: 16px 26px;
+        float: left;
+    }
+    :before，:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}

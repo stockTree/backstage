@@ -17,9 +17,6 @@ class Home extends Component{
         apis.statistic().then((res) => {
             if (res.status === 0) {
                 this.setState(res.data)
-                // let setVal = new Utils()
-                // setVal.setStorage('userData', res.data)
-                // window.location.href = '/'
             } else {
                 console.log(11)
             }
