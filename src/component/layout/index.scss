@@ -1,13 +1,10 @@
 .layout{
-    
-    .content {
-        margin-left: 25%;
-        padding: 16px 26px;
-        float: left;
+    .section{
+        display: flex;
+        justify-content: flex-start;
     }
-    :before，:after {
-        content: "";
-        display: block;
-        clear: both;
+   
+    .content {
+        padding: 16px 26px;
     }
 }

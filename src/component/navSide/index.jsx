@@ -17,7 +17,7 @@ class NavSide extends Component {
                     mode="inline"
                     // openKeys={this.state.openKeys}
                     onOpenChange={this.onOpenChange}
-                    style={{ width: '259%',height:"100vh" }}
+                    style={{ width: '100%',height:"100vh" }}
                 >
                     <Menu.Item
                         key="sub1"

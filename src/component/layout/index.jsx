@@ -10,8 +10,11 @@ class Layout extends Component {
         return (
             <div className="layout">
                 <NavTop />
-                <NavSide />
-                <div className="content">{this.props.children}</div>
+                <div className="section">
+                    <NavSide />
+                    <div className="content">{this.props.children}</div>
+                </div>
+                
             </div>
         )
     }

@@ -5,15 +5,18 @@ import './app.scss'
 import Login from './page/login/index.jsx'
 import Home from './page/home/index.jsx'
 import UserManagement from './page/userManagement/index.jsx'
+import MerchandiseManagement from './page/merchandise/merchandiseManagement/index.jsx'
 import Layout from './component/layout/index.jsx'
 import Error from './page/error/index.jsx'
+import Saves from './page/merchandise/merchandiseManagement/save.jsx'
 import './public.scss'
 import './relize.scss'
 
 import {
     HashRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
   } from "react-router-dom";
 class App extends React.Component {
     render () {
@@ -26,7 +29,9 @@ class App extends React.Component {
                             <Layout>
                                 <Switch>
                                     <Route  exact path="/" component={Home}></Route>
-                                    <Route path="/merchandiseManagement" component={Home}></Route>
+                                    <Route path="/merchandiseManagement/save" component={Saves}></Route>
+                                    <Route path="/merchandiseManagement/index" component={MerchandiseManagement}></Route>
+                                    <Redirect exact from="/merchandiseManagement" to="/merchandiseManagement/index"></Redirect>
                                     <Route path="/categoryManagement" component={Home}></Route>
                                     <Route path="/orderManagement" component={Home}></Route>
                                     <Route path="/userManagement" component={UserManagement}></Route>
