@@ -29,7 +29,7 @@ class App extends React.Component {
                             <Layout>
                                 <Switch>
                                     <Route  exact path="/" component={Home}></Route>
-                                    <Route path="/merchandiseManagement/save" component={Saves}></Route>
+                                    <Route path="/merchandiseManagement/save/:pid" component={Saves}></Route>
                                     <Route path="/merchandiseManagement/index" component={MerchandiseManagement}></Route>
                                     <Redirect exact from="/merchandiseManagement" to="/merchandiseManagement/index"></Redirect>
                                     <Route path="/categoryManagement" component={Home}></Route>

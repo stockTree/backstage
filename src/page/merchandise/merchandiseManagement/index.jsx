@@ -34,8 +34,10 @@ class MerchandiseManagement extends Component {
             if (res.status === 0) {
                 this.setState({data:res.data.list})
             } else {
+                message.error('好像出错了'); 
             }
         }).catch((error) => {
+            error && message.error(error);
         })
     }
     // 上下架商品
@@ -45,8 +47,10 @@ class MerchandiseManagement extends Component {
             if (res.status === 0) {
                 this.handleMerchandiseData()
             } else {
+                message.error('好像出错了');
             }
         }).catch((error) => {
+            error && message.error(error);
         })
     }
     componentDidMount () {
@@ -58,8 +62,10 @@ class MerchandiseManagement extends Component {
             if (res.status === 0) {
                 this.setState({data:res.data.list})
             } else {
+                message.error('好像出错了');
             }
         }).catch((error) => {
+            error && message.error(error);
         })
     }
     
@@ -107,8 +113,8 @@ class MerchandiseManagement extends Component {
                 render:(text,record) => (
                     <Space size="middle">
                         <a onClick={() => {this.handleToggle(record.status, record.id)}}>{record.status === 2 ? '在售' : '已下架'}</a>
-                        <NavLink to={'/merchandiseManagement/save'+record.id }>保存</NavLink>
-                        <NavLink to={'/merchandiseManagement/edit'+record.id }>编辑</NavLink>
+                        <NavLink to={'/merchandiseManagement/save/'+record.id }>保存</NavLink>
+                        <NavLink to={{pathname:'/merchandiseManagement/save/'+record.id ,state:record}}>编辑</NavLink>
                     </Space>
                 )
             }
@@ -118,7 +124,7 @@ class MerchandiseManagement extends Component {
         return (
             <div className="merchandise">
                 <PreTitle title="商品列表">
-                    <Button><NavLink to='/merchandiseManagement/save'>添加商品</NavLink></Button>
+                    <Button><NavLink to='/merchandiseManagement/save/0'>添加商品</NavLink></Button>
                 </PreTitle>
                 <Row>
                     <Col span={5} style={styleSelect}>

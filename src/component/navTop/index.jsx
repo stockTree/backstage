@@ -19,6 +19,7 @@ class NavTop extends Component {
             _utils.getStorage('userData')
             window.location.href = '/#/login'
         }).catch((error) => {
+            error && message.error(error);
         })
         
     }

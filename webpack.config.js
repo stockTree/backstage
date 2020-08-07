@@ -28,7 +28,7 @@ module.exports = {
                 secure: false, // 接受 运行在 https 上的服务
                 changeOrigin: true
             },
-            '/user/login.do': {
+            '/user/**': {
                 target: 'http://admintest.happymmall.com',
                 secure: false, // 接受 运行在 https 上的服务
                 changeOrigin: true

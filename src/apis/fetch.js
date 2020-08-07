@@ -38,8 +38,8 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use((response) => {
     const res = response.data
-    if (res.status === '10') {
-        router.replace('/login')    
+    if (res.status === 10) {
+        window.location.href='/#/login' 
         return Promise.reject(res)
     }
     if (!res) {

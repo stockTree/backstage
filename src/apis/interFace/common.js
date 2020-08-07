@@ -14,7 +14,7 @@ const commonApi = {
     logOut: () => {
         return instance({
             method: 'post',
-            url: '/user/login.do',
+            url: '/user/logout.do',
         })
     },
 

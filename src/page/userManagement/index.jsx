@@ -9,23 +9,22 @@ class UserManagement extends Component {
         super(props)
     }
     state = {
-      data: []
+        data: []
     } 
     componentDidMount () {
-      this.handleUserData()
+        this.handleUserData()
     }
     handleUserData = () => {
-      apis.userList({pageNum: 1}).then((res) => {
-        if (res.status === 0) {
-          console.log(res.data.list)
-            this.setState({data:res.data.list})
-            console.log(this.state.data.list,33)
-        } else {
-        }
-    }).catch((error) => {
-    })
+        apis.userList({pageNum: 1}).then((res) => {
+            if (res.status === 0) {
+                this.setState({data:res.data.list})
+            } else {
+                message.error('好像出错了');
+            }
+        }).catch((error) => {
+            error && message.error(error);
+        })
     }
-    
     render () {
       // 两种方式都可以
         // const columns = [

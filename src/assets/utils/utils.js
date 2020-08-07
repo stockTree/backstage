@@ -15,7 +15,6 @@ class UtilsFn {
         let getVal= ''
         if (name) {
             getVal = JSON.parse(localStorage.getItem(name))
-            console.log(getVal, 33)
         }
         return getVal
     }

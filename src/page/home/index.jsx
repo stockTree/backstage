@@ -18,9 +18,11 @@ class Home extends Component{
             if (res.status === 0) {
                 this.setState(res.data)
             } else {
-                console.log(11)
+                message.error('请重新登录');
+                window.location.href="/#/login"
             }
         }).catch((error) => {
+            error && message.error(error)
         })
     }
     render () {

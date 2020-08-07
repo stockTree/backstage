@@ -29,7 +29,7 @@ class Login extends Component{
         if (valAccount) {
             validate.result = true
         } else {
-            validate.resultresultMsg = '账号不存在'
+            validate.resultMsg = '账号不存在'
             validate.result = false
         }
         if (valPwd) {
@@ -54,18 +54,20 @@ class Login extends Component{
                     setVal.setStorage('userData', res.data)
                     window.location.href = '/'
                 } else {
-                    console.log(11)
+                    message.error('好像出错了');
                 }
             }).catch((error) => {
+                 error && message.error(error);
             })
         } else {
+            console.log(this.validateParams().resultMsg)
         }
     }
     componentDidMount () {
         document.addEventListener('keydown', this.onKeyDownEnter)
     }
     onKeyDownEnter = (e) => {
-        this.handleLogin()
+        // this.handleLogin()
     }
     
     render () {
