@@ -15,7 +15,7 @@ class UserManagement extends Component {
         this.handleUserData()
     }
     handleUserData = () => {
-        apis.userList({pageNum: 1}).then((res) => {
+        apis.userList().then((res) => {
             if (res.status === 0) {
                 this.setState({data:res.data.list})
             } else {

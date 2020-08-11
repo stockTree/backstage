@@ -4,16 +4,18 @@ import { Table, Space, Button, Input, Col, Row, Select } from 'antd';
 const { Option } = Select
 import { NavLink } from 'react-router-dom'
 import apis from '../../../apis/index.js'
+import Saves from './save.jsx'
 
 class MerchandiseManagement extends Component {
     constructor (props) {
         super(props)
     }
     state = {
-      data: [],
-      searchType: 'productId',
-      searchKeyword: ''
-      
+        data: [],
+        searchType: 'productId',
+        searchKeyword: '',
+        visible: false,
+        rowParams: {}
     }
     // 商品信息录入
     handleChangeVal = (e) => {
@@ -29,7 +31,6 @@ class MerchandiseManagement extends Component {
             [searchType] : searchKeyword
             // pageNum: 1
         }
-        console.log(params)
         apis.merchandiseSearch(params).then((res) => {
             if (res.status === 0) {
                 this.setState({data:res.data.list})
@@ -69,6 +70,25 @@ class MerchandiseManagement extends Component {
         })
     }
     
+    //弹窗展示和关闭
+    open = (row) => {
+        if (row) {
+            this.setState({visible: true,rowParams:row})
+        } else {
+            this.setState({visible: true, rowParams: {}})
+        }
+    }
+    handleOk = e => {
+        this.setState({
+            visible: false, 
+        });
+    };
+    //弹窗关闭
+    handleCancel = e => {
+        this.setState({
+            visible: false,
+        });
+    };
     render () {
         const columns = [
             {
@@ -112,34 +132,41 @@ class MerchandiseManagement extends Component {
                 key: 'status',
                 render:(text,record) => (
                     <Space size="middle">
-                        <a onClick={() => {this.handleToggle(record.status, record.id)}}>{record.status === 2 ? '在售' : '已下架'}</a>
-                        <NavLink to={'/merchandiseManagement/save/'+record.id }>保存</NavLink>
-                        <NavLink to={{pathname:'/merchandiseManagement/save/'+record.id ,state:record}}>编辑</NavLink>
+                        <a onClick={() => {this.handleToggle(record.status, record.id)}}>{record.status === 2 ? '在售' : '下架'}</a>
+                        <a onClick={() => {this.open(record)}}>编辑</a>
                     </Space>
                 )
             }
         ]
         let style = {marginBottom:'16px', marginRight: '12px'}
-        let styleSelect = {marginBottom:'16px', marginRight: '6px'}
+        let styleSelect = {marginBottom:'16px'}
+        let styleSearch = {marginBottom:'16px', marginRight: '12px'}
         return (
             <div className="merchandise">
                 <PreTitle title="商品列表">
-                    <Button><NavLink to='/merchandiseManagement/save/0'>添加商品</NavLink></Button>
                 </PreTitle>
                 <Row>
-                    <Col span={5} style={styleSelect}>
+                    <Col style={styleSelect}>
                         <Select style={{ width: 120 }} defaultValue="productId" name="searchType" onChange={(val)=>{this.setState({'searchType':val})}}>
                             <Option value="productId">商品id</Option>
                             <Option value="productName">商品名称</Option>
                         </Select>
                     </Col>
-                    <Col span={8} style={style}>
+                    <Col style={style}>
                         <Input placeholder="输入查询" name="searchKeyword" onChange={this.handleChangeVal} />
                     </Col>
-                    <Col span={6}>
-                        <Button onClick={this.handleSearch}>搜索</Button>
+                    <Col style={styleSearch}>
+                        <Button type="primary" onClick={this.handleSearch}>搜索</Button>
+                    </Col>
+                    <Col style={style}>
+                        <Button ghost type="primary"><a onClick={() => {this.open()}}>新增商品</a></Button>
                     </Col>
                 </Row>
+                <Saves
+                    onOk={this.handleOk}
+                    visible={this.state.visible}
+                    onRowParams = {this.state.rowParams}
+                    onCancel={this.handleCancel} />
                 <Table columns={columns} rowKey='id' dataSource={this.state.data} />
             </div>
         )

@@ -45,9 +45,9 @@ class Home extends Component{
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/orderManagement">
+                            <NavLink to="/dataManagement">
                                 <span className="num">{orderCount}</span>
-                                <span className="numText">订单总数</span>
+                                <span className="numText">数据展示</span>
                             </NavLink>
                         </li>
                     </ol>

@@ -66,8 +66,12 @@ class Login extends Component{
     componentDidMount () {
         document.addEventListener('keydown', this.onKeyDownEnter)
     }
+    // 回车键登录
     onKeyDownEnter = (e) => {
-        // this.handleLogin()
+        console.log(e,'e')
+        if(e.keyCode === 13) {
+            this.handleLogin()
+        }
     }
     
     render () {
@@ -95,6 +99,7 @@ class Login extends Component{
                                 name="valPwd"
                                 value={valPwd}
                             />
+                            <span>账号admin,密码admin</span>
                             <Button type="primary" size="large" block onClick={this.handleLogin} onKeyDown={this.onKeyDownEnter}>登录</Button>
                         </DemoBox>
                     </Col>

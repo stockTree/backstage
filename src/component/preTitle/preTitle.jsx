@@ -4,9 +4,10 @@ class PreTitle extends Component{
         super(props)
     }
     render (props) {
+        let style={marginBottom:'26px'} 
         return (
             <div>
-                <h2>{this.props.title}</h2>
+                <h2 style={style}>{this.props.title}</h2>
                 {this.props.children}
             </div>
         )

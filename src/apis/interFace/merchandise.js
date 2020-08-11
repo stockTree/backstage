@@ -50,7 +50,7 @@ const merchandiseApi = {
     detail: (data) => {
         return instance({
             method: 'post',
-            url: 'product/detail.do',
+            url: '/manage/product/detail.do',
             data
         })
     }

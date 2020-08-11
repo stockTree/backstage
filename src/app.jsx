@@ -5,6 +5,7 @@ import './app.scss'
 import Login from './page/login/index.jsx'
 import Home from './page/home/index.jsx'
 import UserManagement from './page/userManagement/index.jsx'
+import DataManagement from './page/dataManagement/index.jsx'
 import MerchandiseManagement from './page/merchandise/merchandiseManagement/index.jsx'
 import Layout from './component/layout/index.jsx'
 import Error from './page/error/index.jsx'
@@ -32,8 +33,8 @@ class App extends React.Component {
                                     <Route path="/merchandiseManagement/save/:pid" component={Saves}></Route>
                                     <Route path="/merchandiseManagement/index" component={MerchandiseManagement}></Route>
                                     <Redirect exact from="/merchandiseManagement" to="/merchandiseManagement/index"></Redirect>
-                                    <Route path="/categoryManagement" component={Home}></Route>
-                                    <Route path="/orderManagement" component={Home}></Route>
+                                    {/* <Route path="/categoryManagement" component={Home}></Route> */}
+                                    <Route path="/dataManagement" component={DataManagement}></Route>
                                     <Route path="/userManagement" component={UserManagement}></Route>
                                     <Route component={Error}></Route>
                                 </Switch>
