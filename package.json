@@ -16,21 +16,26 @@
   },
   "scripts": {
     "start": "webpack --mode development",
-    "dev": "webpack-dev-server --hot"
+    "dev": "webpack-dev-server --hot",
+    "build": "webpack --mode production"
   },
+  "homepage": "https://github.com/stockTree/backstage",
   "dependencies": {
     "@ant-design/compatible": "^1.0.5",
     "antd": "^4.4.1",
+    "autoprefixer": "^9.8.6",
     "axios": "^0.19.2",
     "css-loader": "^3.6.0",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.14.1",
+    "postcss-loader": "^3.0.0",
     "rc-form": "^2.4.11",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-quill": "^1.3.5",
     "react-router-dom": "^5.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-visualizer-plugin": "^0.1.11"
   }
 }
