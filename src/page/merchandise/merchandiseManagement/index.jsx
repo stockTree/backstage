@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PreTitle from '../../../component/preTitle/preTitle.jsx'
-import { Table, Space, Button, Input, Col, Row, Select } from 'antd';
+import { Table, Space, Button, Input, Col, Row, message, Select } from 'antd';
 const { Option } = Select
 import { NavLink } from 'react-router-dom'
 import apis from '../../../apis/index.js'

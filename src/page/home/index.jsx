@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
 import PreTitle from '../../component/preTitle/preTitle.jsx'
+import { message } from 'antd';
 import './index.scss'
 import apis from '../../apis/index.js'
 
@@ -24,6 +25,9 @@ class Home extends Component{
         }).catch((error) => {
             error && message.error(error)
         })
+    }
+    componentWillUnmount() {
+        this.setState = ()=>false;
     }
     render () {
         let {userCount, productCount, orderCount} = this.state

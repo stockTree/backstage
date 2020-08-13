@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button } from 'antd';
+import { message, Button } from 'antd';
 import apis from '../../apis/index.js'
 // import index from '../../apis/index.js'
 import './index.scss'

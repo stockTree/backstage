@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PreTitle from '../../component/preTitle/preTitle.jsx'
-import { Table } from 'antd';
+import { message, Table } from 'antd';
 const { Column} = Table
 import apis from '../../apis/index.js'
 

@@ -12,10 +12,7 @@ module.exports = {
     // mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({template:'index.html'}),
-        new ExtractTextPlugin("styles.css"),
-        // new webpack.DefinePlugin({
-        //     'process.env.NODE_ENV': '"development"'//用于区分开发和生产环境
-        // }),
+        new ExtractTextPlugin("styles.css")
     ],
     devServer: {
         // port: '8868',
