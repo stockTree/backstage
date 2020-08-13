@@ -5,6 +5,9 @@ const { Option } = Select
 import { NavLink } from 'react-router-dom'
 import apis from '../../../apis/index.js'
 import Saves from './save.jsx'
+import merchandiseList from './merchandiseList.json'
+import statueToggle from './statueToggle.json'
+import merchandiseSearch from './merchandiseSearch.json'
 
 class MerchandiseManagement extends Component {
     constructor (props) {
@@ -31,43 +34,43 @@ class MerchandiseManagement extends Component {
             [searchType] : searchKeyword
             // pageNum: 1
         }
-        apis.merchandiseSearch(params).then((res) => {
-            if (res.status === 0) {
-                this.setState({data:res.data.list})
+        // apis.merchandiseSearch(params).then((res) => {
+            if (merchandiseSearch.status === 0) {
+                this.setState({data:merchandiseSearch.data.list})
             } else {
                 message.error('好像出错了'); 
             }
-        }).catch((error) => {
-            error && message.error(error);
-        })
+        // }).catch((error) => {
+        //     error && message.error(error);
+        // })
     }
     // 上下架商品
     handleToggle = (status, id) => {
         let state = (status === 1 ? 2 : 1)
-        apis.statueToggle({productId: id, status:state}).then((res) => {
-            if (res.status === 0) {
+        // apis.statueToggle({productId: id, status:state}).then((res) => {
+            if (statueToggle.status === 0) {
                 this.handleMerchandiseData()
             } else {
                 message.error('好像出错了');
             }
-        }).catch((error) => {
-            error && message.error(error);
-        })
+        // }).catch((error) => {
+        //     error && message.error(error);
+        // })
     }
     componentDidMount () {
         this.handleMerchandiseData()
     }
     // 获取商品列表数据
     handleMerchandiseData = () => {
-        apis.merchandiseList().then((res) => {
-            if (res.status === 0) {
-                this.setState({data:res.data.list})
+        // apis.merchandiseList().then((res) => {
+            if (merchandiseList.status === 0) {
+                this.setState({data:merchandiseList.data.list})
             } else {
                 message.error('好像出错了');
             }
-        }).catch((error) => {
-            error && message.error(error);
-        })
+        // }).catch((error) => {
+        //     error && message.error(error);
+        // })
     }
     
     //弹窗展示和关闭

@@ -7,6 +7,9 @@ import { UploadOutlined } from '@ant-design/icons';
 import 'react-quill/dist/quill.snow.css';
 import apis from '../../../apis/index.js'
 import './index.scss'
+import detail from './detail.json'
+import getCategory from './getCategory.json'
+import save from './save.json'
 
 class Saves extends Component {
     constructor (props) {
@@ -30,71 +33,47 @@ class Saves extends Component {
     // 拿到初始数据
     componentDidMount () {
         this.handleGetCategory(0, 1)
-        console.log(this.props, 'this.props')
-        console.log(this.props.onRowParams, 'this.props.onRowParams')
         
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.onRowParams.id, 'nextProps.onRowParams.id')
-        console.log(this.state.params, 'this.state.params')
         if (nextProps.onRowParams.id) {
-            apis.detail({'productId':nextProps.onRowParams.id}).then((res) => {
-                if (res.status === 0) {
-                    this.setState({params: res.data})
+            // apis.detail({'productId':nextProps.onRowParams.id}).then((res) => {
+                if (detail.status === 0) {
+                    this.setState({params: detail.data})
                     let {params} = this.state
                     let {firstCategoryId, secondCategoryId, subImages} = params
                     if (params.parentCategoryId) {
-                        this.setState({firstCategoryId: res.data.parentCategoryId,secondCategoryId:res.data.categoryId})
+                        this.setState({firstCategoryId: detail.data.parentCategoryId,secondCategoryId:detail.data.categoryId})
                     } else {
-                        this.setState({firstCategoryId: res.data.categoryId})
+                        this.setState({firstCategoryId: detail.data.categoryId})
                     }
                     // let subImages = params.imageHost + params.mainImage
                     this.setState({subImages:params.imageHost + params.mainImage})
-                    console.log(this.state, 'res.data')
-                    console.log(res.data.categoryId, 'categoryId')
-                    console.log(res.data.parentCategoryId, 'parentCategoryId')
                 } else {
                     message.error('好像出错了');
                 }
-            }).catch((error) => {
-                error && message.error(error);
-            })
+            // }).catch((error) => {
+            //     error && message.error(error);
+            // })
         } else {
             this.setState({params: {}})
-            // nextProps.form.resetFields()
         }
     }
     handleGetCategory = (id, num) => {
         let categoryId = id || 0
-        apis.getCategory({'categoryId': categoryId}).then((res) => {
-            if (res.status === 0) {
+        // apis.getCategory({'categoryId': categoryId}).then((res) => {
+            if (getCategory.status === 0) {
                 if (num === 2) {
-                   this.setState({secondCategoryList: res.data, firstCategoryId: id, secondCategoryId: ''})
+                   this.setState({secondCategoryList: getCategory.data, firstCategoryId: id, secondCategoryId: ''})
                 } else {
-                    this.setState({firstCategoryList: res.data, secondCategoryId: '',secondCategoryList: []})
+                    this.setState({firstCategoryList: getCategory.data, secondCategoryId: '',secondCategoryList: []})
                 }
             } else {
                 message.error('好像出错了');
             }
-        }).catch((error) => {
-            error && message.error(error);
-        })
-    }
-    // 拿到详情
-    handleDetail = () => {
-        apis.detail({'productId': categoryId}).then((res) => {
-            if (res.status === 0) {
-                if (num === 2) {
-                   this.setState({secondCategoryList: res.data, firstCategoryId: id, secondCategoryId: ''})
-                } else {
-                    this.setState({firstCategoryList: res.data, secondCategoryId: '',secondCategoryList: []})
-                }
-            } else {
-                message.error('好像出错了');
-            }
-        }).catch((error) => {
-            error && message.error(error);
-        })
+        // }).catch((error) => {
+        //     error && message.error(error);
+        // })
     }
     // 拿到第一次的id 
     getFirstId = (e) => {
@@ -126,25 +105,24 @@ class Saves extends Component {
         const {form} = this.props
         form.validateFields((err, value) => {
             if (err) {
-                return;
+                return  message.error(err);;
             }
-            console.log(value, 'value')
             value.subImages = value.subImages.file.response.data.url
             let params = Object.assign({}, value)
             params.parentCategoryId = value.firstCategoryId
             params.categoryId = value.secondCategoryId
             delete params.firstCategoryId
             delete params.secondCategoryId
-            apis.save(params).then((res) => {
-                if (res.status === 0) {
+            // apis.save(params).then((res) => {
+                if (save.status === 0) {
                     form.resetFields()
                     this.props.onCancel()
-                    message.success(res.data);
+                    message.success(save.data);
                 } else {
                     message.error('好像出错了');
                 }
-            }).catch((error) => {
-            })
+            // }).catch((error) => {
+            // })
         })
     }
     render () {

@@ -4,6 +4,7 @@ import PreTitle from '../../component/preTitle/preTitle.jsx'
 import { message } from 'antd';
 import './index.scss'
 import apis from '../../apis/index.js'
+import statistic from './statistic.json'
 
 class Home extends Component{
     constructor (props) {
@@ -15,16 +16,16 @@ class Home extends Component{
         orderCount: '-'
     }
     componentDidMount() {
-        apis.statistic().then((res) => {
-            if (res.status === 0) {
-                this.setState(res.data)
+        // apis.statistic().then((res) => {
+            if (statistic.status === 0) {
+                this.setState(statistic.data)
             } else {
                 message.error('请重新登录');
                 window.location.href="/#/login"
             }
-        }).catch((error) => {
-            error && message.error(error)
-        })
+        // }).catch((error) => {
+        //     error && message.error(error)
+        // })
     }
     componentWillUnmount() {
         this.setState = ()=>false;

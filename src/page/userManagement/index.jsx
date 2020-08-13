@@ -3,6 +3,7 @@ import PreTitle from '../../component/preTitle/preTitle.jsx'
 import { message, Table } from 'antd';
 const { Column} = Table
 import apis from '../../apis/index.js'
+import userList from './userList.json'
 
 class UserManagement extends Component {
     constructor (props) {
@@ -15,15 +16,15 @@ class UserManagement extends Component {
         this.handleUserData()
     }
     handleUserData = () => {
-        apis.userList().then((res) => {
-            if (res.status === 0) {
-                this.setState({data:res.data.list})
+        // apis.userList().then((res) => {
+            if (userList.status === 0) {
+                this.setState({data:userList.data.list})
             } else {
                 message.error('好像出错了');
             }
-        }).catch((error) => {
-            error && message.error(error);
-        })
+        // }).catch((error) => {
+        //     error && message.error(error);
+        // })
     }
     render () {
       // 两种方式都可以

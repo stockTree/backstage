@@ -3,6 +3,8 @@ import { Row, Col, Form, Input, Button, message  } from 'antd';
 import './index.scss'
 import apis from '../../apis/index.js'
 import Utils from '../../assets/utils/utils'
+import login from './login.json'
+
 const DemoBox = props => <p className={`height-${props.value}`}>{props.children}</p>
 
 
@@ -48,17 +50,17 @@ class Login extends Component{
                 username: valAccount,
                 password: valPwd
             }
-            apis.login(params).then((res) => {
-                if (res.status === 0) {
+            // apis.login(params).then((res) => {
+                if (login.status === 0) {
                     let setVal = new Utils()
-                    setVal.setStorage('userData', res.data)
+                    setVal.setStorage('userData', login.data)
                     window.location.href = '/'
                 } else {
                     message.error('好像出错了');
                 }
-            }).catch((error) => {
-                 error && message.error(error);
-            })
+            // }).catch((error) => {
+            //      error && message.error(error);
+            // })
         } else {
             console.log(this.validateParams().resultMsg)
         }
