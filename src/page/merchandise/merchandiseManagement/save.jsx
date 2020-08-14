@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PreTitle from '../../../component/preTitle/preTitle.jsx'
-import { Upload, Button, Input, Col, Row, Select, message, Modal } from 'antd';
+import { Upload, Button, Input, Col, Row, Select, message, Modal,InputNumber } from 'antd';
 import { Form } from '@ant-design/compatible'
 const { Option } = Select
 import { UploadOutlined } from '@ant-design/icons';
@@ -158,6 +158,8 @@ class Saves extends Component {
                 visible={visible}
                 onOk={this.submit}
                 onCancel={onCancel}
+                preserve={false}
+                destroyOnClose = {true}
             >
                 <PreTitle title="商品列表:"></PreTitle>
                 <Form {...layout}>
@@ -206,14 +208,14 @@ class Saves extends Component {
                 <Row>
                     <Col span={16} >
                     <Form.Item label="商品价格:">
-                    {getFieldDecorator('price', {initialValue: price, rules: [{ type: 'number', min: 1, required: true, message: "请输入商品价格,最低大于0元!" }]})(<Input addonAfter="元" />)}
+                    {getFieldDecorator('price', {initialValue: price, rules: [{type: 'number',min: 1}, {required: true, message: "请输入商品价格,最低大于0元!" }]})(<InputNumber addonAfter="元" />)}
                     </Form.Item>
                     </Col>
                 </Row>
                 <Row>
                     <Col span={16} >
                     <Form.Item label="商品库存:">
-                        {getFieldDecorator('stock', {initialValue: stock, rules: [{type: 'number', min: 1, max:100, required: true, message: "请输入商品库存，最低大于0件，最大不超过100件!" }]})(<Input addonAfter="件" />)}
+                        {getFieldDecorator('stock', {initialValue: stock, rules: [{required: true, message: "请输入商品库存，最低大于0件，最大不超过100件!" }]})(<InputNumber addonAfter="件" />)}
                     </Form.Item>
                     </Col>
                 </Row>

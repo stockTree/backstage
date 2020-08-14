@@ -58,7 +58,7 @@ class Home extends Component{
                     </ol>
                 </section>
                 <div>
-                    <p className={tip}>tip:本地环境使用接口，可正常进行交互，github 使用mock不可正常交互。</p>
+                    <p className="tips">tip:本地环境使用接口，可正常进行交互，github 使用mock不可正常交互。</p>
                 </div>
                 
             </div>
